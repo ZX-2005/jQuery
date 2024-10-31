@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Login and Registration</title>
+  <style>
+    form {
+      margin: 20px;
+    }
+
+    input {
+      margin-bottom: 10px;
+    }
+
+    button {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 登录表单 -->
+  <form id="loginForm" style="display:none">
+    <label for="loginUsername">用户名: </label><input type="text" id="loginUsername" name="loginUsername" required><br>
+    <label for="loginPassword">密码: </label><input type="password" id="loginPassword" name="loginPassword" required><br>
+    <button type="button" onclick="login()">登录</button>
+  </form>
+
+  <!-- 注册表单 -->
+  <form id="registrationForm">
+    <label for="username">用户名: </label><input type="text" id="username" name="username" required><br>
+    <label for="password">密码: </label><input type="password" id="password" name="password" required><br>
+    <label for="confirmPassword">确认密码: </label><input type="password" id="confirmPassword" name="confirmPassword"
+      required><br>
+    <label for="email">邮箱: </label><input type="email" id="email" name="email" required><br>
+    <button type="button" onclick="register()">注册</button>
+  </form>
+
+  <script>
+    function showLogin() {
+      document.getElementById('loginForm').style.display = 'block';
+      document.getElementById('registrationForm').style.display = 'none';
+    }
+
+    function showRegistration() {
+      document.getElementById('loginForm').style.display = 'none';
+      document.getElementById('registrationForm').style.display = 'block';
+    }
+
+    function register() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      const email = document.getElementById('email').value;
+
+      if (username === '') {
+        alert('用户名不能为空');
+        return;
+      }
+      if (password === '') {
+        alert('密码不能为空');
+        return;
+      }
+      if (confirmPassword === '') {
+        alert('确认密码不能为空');
+        return;
+      }
+      if (email === '') {
+        alert('邮箱不能为空');
+        return;
+      }
+      if (password !== confirmPassword) {
+        alert('两次密码输入不一致');
+        return;
+      }
+
+      // 这里可以添加代码将数据发送到后端，例如使用AJAX
+      console.log('注册信息：', { username, password, email });
+    }
+
+    function login() {
+      const loginUsername = document.getElementById('loginUsername').value;
+      const loginPassword = document.getElementById('loginPassword').value;
+
+      if (loginUsername === '') {
+        alert('用户名不能为空');
+        return;
+      }
+      if (loginPassword === '') {
+        alert('密码不能为空');
+        return;
+      }
+
+      // 这里可以添加代码将数据发送到后端，例如使用AJAX
+      console.log('登录信息：', { username: loginUsername, password: loginPassword });
+    }
+  </script>
+
+  <button onclick="showLogin()">登录</button>
+  <button onclick="showRegistration()">注册</button>
+</body>
+
+</html>
